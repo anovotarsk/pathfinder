@@ -17,12 +17,3 @@ char *mx_strncpy(char *dst, const char *src, int len) {
     }
     return dst;
 }
-
-/*char *mx_strnew(const int size);
-#include <stdio.h>
-int main() {
-    char *dest = mx_strnew(10);
-    char *source ="ArtyPyDev";
-    printf("%s", mx_strncpy(dest, source, 4));
-}*/
-

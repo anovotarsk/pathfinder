@@ -44,14 +44,3 @@ static bool count_border(char *s, char c, char **start, char **end) {
     ;
     return true;
 }
-
-/*#include <stdio.h>
-int main() {
-    char *s = " Knock,knock,Neo., dfd,fdgfdg,dfg,fg,fg,fdg,fg,dfg,fg,f,gf,gfd,";
-    char **arr = mx_strsplit(s, ',');
-    int i = 0;
-    while (arr[i]) {
-        printf("%s\n", arr[i]);
-        i++;
-    }
-}*/

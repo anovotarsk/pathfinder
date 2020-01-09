@@ -13,15 +13,3 @@ void mx_str_reverse(char *s) {
         len--;
     }
 }
-
-/*#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-int main() {
-    char str[10] = "game over";
-    char *s = "game over";
-    strrev(str);
-    printf("%s\n", s);
-    mx_str_reverse(str);
-    printf("%s", str);
-}*/

@@ -1,6 +1,6 @@
 #include "libmx.h"
 
-int func(char **arr, const char *s, int start, int finish, int **count) {
+static int func(char **arr, const char *s, int start, int finish, int **count) {
     int center = start + (finish-start) / 2;
 
     while (start <= finish) {

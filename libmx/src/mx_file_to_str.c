@@ -1,6 +1,6 @@
 #include "libmx.h"
 
-bool file_len(const char *file, int *len) {
+static bool file_len(const char *file, int *len) {
     int f = open(file, O_RDONLY);
     char c[1];
 
@@ -30,9 +30,3 @@ char *mx_file_to_str(const char *file) {
     close(f);
     return str;
 }
-
-/*#include <stdio.h>
-int main() {
-    char *file = "file.txt";
-    printf("%s", mx_file_to_str(file));
-}*/

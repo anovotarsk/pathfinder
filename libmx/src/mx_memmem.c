@@ -21,12 +21,3 @@ void *mx_memmem(const void *big, size_t big_len, const void *little,
     }
     return NULL;
 }
-
-/*#include <string.h>
-#include <stdio.h>
-int main() {
-    char *hay = "ArtyPyDev";
-    char *nee = "rt";
-    printf("%s\n", mx_memmem(hay, 9, nee, 2));
-    printf("%s\n", memmem(hay, 9, nee, 2));
-}*/

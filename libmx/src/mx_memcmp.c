@@ -13,10 +13,3 @@ int mx_memcmp(const void *s1, const void *s2, size_t n) {
     }
     return 0;
 }
-
-/*#include <stdio.h>
-int main() {
-    char src[10]="123456wdw";
-    char dst[10] = "12348wwed";
-    printf("%d", mx_memcmp(src, dst, 7));
-}*/

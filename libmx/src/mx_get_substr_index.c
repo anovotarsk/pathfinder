@@ -1,6 +1,6 @@
 #include "libmx.h"
 
-int loop(int len1, int len2, char *s, const char *sub) {
+static int loop(int len1, int len2, char *s, const char *sub) {
     bool flag;
     int i;
     int n = 0;
@@ -32,9 +32,3 @@ int mx_get_substr_index(const char *str, const char *sub) {
         s[i] = str[i];
     return loop(len1, len2, s, sub);
 }
-
-/*int main() {
-    char *hay = "ArtyPyDev";
-    // char *nee = "Dev";
-    printf("%d", mx_get_substr_index(hay, NULL));
-}*/

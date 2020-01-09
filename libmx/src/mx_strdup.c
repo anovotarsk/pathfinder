@@ -7,4 +7,3 @@ char *mx_strdup(const char *str) {
     mx_strcpy(s, str);
     return s;
 }
-

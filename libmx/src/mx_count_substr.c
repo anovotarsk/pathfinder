@@ -1,6 +1,6 @@
 #include "libmx.h"
 
-int loop(const char *str, const char *sub) {
+static int loop(const char *str, const char *sub) {
     int len1;
     int len2;
     int n = 0;

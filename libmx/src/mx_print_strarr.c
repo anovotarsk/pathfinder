@@ -17,9 +17,3 @@ void mx_print_strarr(char **arr, const char *delim) {
     }
     mx_printstr("\n");
 }
-
-/*int main() {
-    char *arr[] = {"", "jiu", "lol", "qwertyui", NULL};
-    char *del = "";
-    mx_print_strarr(arr, del);
-}*/

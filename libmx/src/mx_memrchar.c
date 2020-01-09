@@ -17,9 +17,3 @@ void *mx_memrchr(const void *s, int c, size_t n) {
         return str1;
     return NULL;
 }
-
-/*#include <stdio.h>
-int main() {
-    printf("%s\n", mx_memrchr("Trinity", 'i', 7));
-    printf("%s\n", mx_memrchr("Trinity", 'M', 7));
-}*/

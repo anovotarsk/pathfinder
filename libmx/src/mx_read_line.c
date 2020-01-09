@@ -22,21 +22,3 @@ int mx_read_line(char **lineptr, size_t buf_size, char delim, const int fd) {
     }
     return count;
 }
-
-/*#include <stdio.h>
-int main() {
-    int fd = open("file.txt", O_RDONLY);
-
-    char *str = mx_strnew(1000);
-    printf("%d\n", mx_read_line(&str, 20, 'f', fd));
-    printf("%s\n", str);
-    free(str);
-    str = mx_strnew(1000);
-    printf("%d\n", mx_read_line(&str, 35, 't', fd));
-    printf("%s\n", str);
-    free(str);
-    str = mx_strnew(1000);
-    printf("%d\n", mx_read_line(&str, 4, '.', fd));
-    printf("%s\n", str);
-    free(str);
-}*/

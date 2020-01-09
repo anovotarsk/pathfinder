@@ -16,11 +16,3 @@ void *mx_memccpy(void *restrict dst, const void *restrict src,
         return NULL;
     return d;
 }
-
-/*#include <stdio.h>
-int main() {
-    char src[15] = "1234567890";
-    char dst[15] = "";
-    mx_memccpy(dst, src, '3', 10);
-    printf("%s", dst);
-}*/

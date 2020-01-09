@@ -30,4 +30,3 @@ int mx_quicksort(char **arr, int left, int right) {
     mx_sort(arr, left, right, &swaps);
     return swaps;
 }
-

@@ -1,6 +1,6 @@
 #include "libmx.h"
 
-int check(const char *str, char c) {
+static int check(const char *str, char c) {
     int len;
     int i;
 

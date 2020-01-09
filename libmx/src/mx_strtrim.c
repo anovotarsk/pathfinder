@@ -16,9 +16,3 @@ char *mx_strtrim(const char *str) {
     }
     return u;
 }
-
-// #include <stdio.h>
-// int main() {
-//     char *name = "\f My name... is Neo \t\n ";
-//     printf("%s", mx_strtrim(name));
-// }

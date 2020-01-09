@@ -18,9 +18,3 @@ char *mx_strcat(char *restrict s1, const char *restrict s2) {
     }
     return str;
 }
-
-/*int main() {
-    char *s1 = "Art";
-    char *s2 = "PyDev";
-    printf("%s", mx_strcat(s1, s2));
-}*/

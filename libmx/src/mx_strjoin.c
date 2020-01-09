@@ -22,13 +22,3 @@ char *mx_strjoin(const char *s1, const char *s2) {
     }
     return str;
 }
-
-/*#include <stdio.h>
-int main() {
-    char *str1 = "this";
-    char *str2 = "dodge";
-    char *str3 = NULL;
-    printf("%s\n", mx_strjoin(str2, str1));
-    printf("%s\n", mx_strjoin(str3, str1));
-    printf("%s\n", mx_strjoin(str3, str3));
-}*/

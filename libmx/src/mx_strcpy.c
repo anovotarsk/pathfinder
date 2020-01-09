@@ -10,4 +10,3 @@ char *mx_strcpy(char *dst, const char *src) {
     dst[len] = '\0';
     return dst;
 }
-

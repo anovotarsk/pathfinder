@@ -1,6 +1,6 @@
 #include "libmx.h"
 
-void writer(char *s, char **s1, int len) {
+static void writer(char *s, char **s1, int len) {
     int i;
     int j;
 
@@ -35,11 +35,4 @@ char *mx_del_extra_spaces(const char *str) {
     writer(s, &s1, len);
     mx_strdel(&s);
     return s1;
-}
-
-#include <stdio.h>
-int main() {
-    //char *name = "\f My name...  is \r Neo \t\n ";
-    //printf("%s", mx_del_extra_spaces(name));
-    printf("%s\n", mx_del_extra_spaces("I   \n\n\n\n don't KNOW\n\n\nwhy\n\n\nusay \nGbye\n"));
 }

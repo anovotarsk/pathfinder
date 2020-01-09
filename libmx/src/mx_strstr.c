@@ -15,10 +15,3 @@ char *mx_strstr(const char *haystack, const char *needle) {
     else 
         return (char*)&haystack[e];
 }
-
-/*#include <stdio.h>
-int main() {
-    char *hay = "ArtyPyDev";
-    char *nee = "Py";
-    printf("%s", mx_strstr(hay, nee));
-}*/

@@ -22,9 +22,3 @@ char *mx_replace_substr(const char *str, const char *sub, const char *replace) {
         s[i + s_len] = str[i];
     return s;
 }
-
-/*#include <stdio.h>
-int main() {
-    printf("%s\n", mx_replace_substr("McDonalds", "alds", "uts"));
-    printf("%s\n", mx_replace_substr("Ururu turu", "ru", "ta"));
-}*/

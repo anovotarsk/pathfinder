@@ -1,13 +1,13 @@
 #include "libmx.h"
 
-void number_len(int number, int *len) {
+static void number_len(int number, int *len) {
     while (number > 0) {
         number /= 10;
         len[0]++;
     }
 }
 
-char *converter(int number) {
+static char *converter(int number) {
     int len = (number < 0) ? 1 : 0;
     int j;
     char *ascii = NULL;
@@ -46,4 +46,3 @@ char *mx_itoa(int number) {
     }
     return neg;
 }
-
