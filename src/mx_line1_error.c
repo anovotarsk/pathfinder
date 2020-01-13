@@ -2,10 +2,9 @@
 
 int mx_line1_error(char *file) {
     int fd = open(file, O_RDONLY);
-    char *line = mx_strnew(10000);
     int islands;
+    char *line = mx_read_line('\n', fd);
 
-    mx_read_line(&line, '\n', fd);
     close(fd);
     islands = mx_atoi(line);
     mx_strdel(&line);

@@ -18,8 +18,9 @@ int mx_atoi(char *str) {
 
 bool mx_isalphabetic(char *str) {
     int i;
+    int len = mx_strlen(str);
 
-    for (i = 0; i < mx_strlen(str); i++) {
+    for (i = 0; i < len; i++) {
         if ((str[i] >= 65 && str[i] <= 90)
              || ((str[i] >= 97 && str[i] <= 122)))
             return true;

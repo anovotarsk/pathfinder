@@ -1,20 +1,24 @@
 #include "libmx.h"
 
-int mx_read_line(char **lineptr, char delim, const int fd) {
+char *mx_read_line(char delim, const int fd) {
     char buf;
-    int count = 0, status;
-    bool flag = true;
-    while (flag) {
+    int status;
+    char *s = mx_strnew(0);
+    int len = 0;
+
+    while (true) {
         status = read(fd, &buf, 1);
-        if (status == -1)
-            return -1;
-        if (status == 0)
-            return 0;
-        flag = (buf == delim) ? false : flag;
-        if (buf == delim)
-            return count;
-        lineptr[0][count] = buf;
-        count++;
+        if (status == -1 || status == 0) {
+            mx_strdel(&s);
+            return NULL;
+        }
+        if (buf == delim) {
+            s = mx_realloc(s, ++len);
+            s[len - 1] = '\0';
+            return s;
+        }
+        s = mx_realloc(s, ++len);
+        s[len - 1] = buf;
     }
-    return count;
+    return NULL;
 }
