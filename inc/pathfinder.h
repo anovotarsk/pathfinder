@@ -24,6 +24,7 @@ void mx_usage_error(int argc);
 void mx_exist_error(char *file);
 void mx_empty_error(char *file);
 int mx_line1_error(char *file);
+void mx_point_array(char ***arr, r_list *list, char *file);
 
 void mx_validator(int argc, char *argv[]);
 

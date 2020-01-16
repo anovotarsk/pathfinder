@@ -11,14 +11,29 @@ static void mx_error_line(int line) {
     exit(1);
 }
 
+static void mx_delimeters(char *s, int line) {
+    int count1 = 0;
+    int count2 = 0;
+    int i;
+
+    for (i = 0; i < mx_strlen(s); i++) {
+        if (s[i] == '-')
+            count1++;
+        if (s[i] == ',')
+            count2++;
+    }
+    if (count1 != 1 || count2 != 1)
+        mx_error_line(line);
+}
+
 static void mx_line_parsing(r_list ***list, char *s, int line) {
     char **l1;
     char **l2;
 
+    mx_delimeters(s, line);
     if (s[0] == '\0')
         mx_error_line(line);
     l1 = mx_strsplit(s, '-');
-    //printf("%s\n", l1[0]);
     if (mx_isalphabetic(l1[0]) == false || l1[1] == NULL)
         mx_error_line(line);
     l2 = mx_strsplit(l1[1], ',');
@@ -29,7 +44,6 @@ static void mx_line_parsing(r_list ***list, char *s, int line) {
     mx_del_strarr(&l1);
     mx_del_strarr(&l2);
 }
-
 
 void mx_edges_list(r_list **list, char *file) {
     int fd = open(file, O_RDONLY);
@@ -43,7 +57,6 @@ void mx_edges_list(r_list **list, char *file) {
         mx_line_parsing(&list, s, line);
         mx_strdel(&s);
         s = mx_read_line('\n', fd);
-        printf("%s\n", s);
         line++;
     }
 }
