@@ -4,16 +4,24 @@
 #include "../libmx/inc/libmx.h"
 
 typedef struct edge {
-    void *point1;
-    void *point2;
+    char *point1;
+    char *point2;
     int len;
     struct edge *next;
 } r_list;
 
+typedef struct p_list {
+    char *point;
+    struct p_list *next;
+} p_list;
+
 //lists
-r_list *mx_create_edge(void *point1, void *point2, int len);
-void mx_push_edge(r_list **list, void *point1, void *point2, int len);
+r_list *mx_create_edge(char *point1, char *point2, int len);
+void mx_push_edge(r_list **list, char *point1, char *point2, int len);
 void mx_edges_list(r_list **list, char *file);
+
+p_list *mx_create_point(char *data);
+void mx_push_point(p_list **list, char *point);
 
 //useful functions
 int mx_atoi(char *str);
@@ -24,8 +32,7 @@ void mx_usage_error(int argc);
 void mx_exist_error(char *file);
 void mx_empty_error(char *file);
 int mx_line1_error(char *file);
-void mx_point_array(char ***arr, r_list *list, char *file);
-
+p_list *mx_point_list(r_list **edges, char *file);
 void mx_validator(int argc, char *argv[]);
 
 #endif

@@ -1,6 +1,6 @@
 #include "../inc/pathfinder.h"
 
-r_list *mx_create_edge(void *point1, void *point2, int len) {
+r_list *mx_create_edge(char *point1, char *point2, int len) {
     r_list *node = (r_list*)malloc(sizeof(r_list));
 
     node->point1 = point1;
@@ -10,14 +10,13 @@ r_list *mx_create_edge(void *point1, void *point2, int len) {
     return node;
 }
 
-void mx_push_edge(r_list **list, void *point1, void *point2, int len) {
+void mx_push_edge(r_list **list, char *point1, char *point2, int len) {
     r_list *l = NULL;
     r_list *node = mx_create_edge(point1, point2, len);
 
-    if (list == NULL)
-        list = &node;
-    if (*list == NULL)
+    if (*list == NULL) {
         *list = node;
+    }
     else {
         l = *list;
         while (l->next != NULL)

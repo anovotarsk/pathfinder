@@ -26,7 +26,7 @@ static void mx_delimeters(char *s, int line) {
         mx_error_line(line);
 }
 
-static void mx_line_parsing(r_list ***list, char *s, int line) {
+static void mx_line_parsing(r_list **list, char *s, int line) {
     char **l1;
     char **l2;
 
@@ -40,9 +40,9 @@ static void mx_line_parsing(r_list ***list, char *s, int line) {
     if (mx_isalphabetic(l2[0]) == false || l2[1] == NULL
         || mx_atoi(l2[1]) == -1)
         mx_error_line(line);
-    mx_push_edge(*list, l1[0], l1[0], mx_atoi(l2[1]));
-    mx_del_strarr(&l1);
-    mx_del_strarr(&l2);
+    mx_push_edge(&(*list), l1[0], l2[0], mx_atoi(l2[1]));
+    mx_strdel(&l1[1]);
+    mx_strdel(&l2[1]);
 }
 
 void mx_edges_list(r_list **list, char *file) {
@@ -54,7 +54,7 @@ void mx_edges_list(r_list **list, char *file) {
     s = mx_read_line('\n', fd);
     line++;
     while (s != NULL) {
-        mx_line_parsing(&list, s, line);
+        mx_line_parsing(&(*list), s, line);
         mx_strdel(&s);
         s = mx_read_line('\n', fd);
         line++;
