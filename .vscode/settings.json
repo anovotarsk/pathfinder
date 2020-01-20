@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "pathfinder.h": "c"
+        "pathfinder.h": "c",
+        "libmx.h": "c"
     }
 }

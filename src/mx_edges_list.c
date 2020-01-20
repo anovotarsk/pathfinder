@@ -1,6 +1,6 @@
 #include "../inc/pathfinder.h"
 
-static void mx_error_line(int line) {
+static void error_line(int line) {
     char *error1 = "error: line ";
     char *error2 = " is not valid\n";
     char *l = mx_itoa(line);
@@ -11,7 +11,7 @@ static void mx_error_line(int line) {
     exit(1);
 }
 
-static void mx_delimeters(char *s, int line) {
+static void delimeters(char *s, int line) {
     int count1 = 0;
     int count2 = 0;
     int i;
@@ -23,26 +23,35 @@ static void mx_delimeters(char *s, int line) {
             count2++;
     }
     if (count1 != 1 || count2 != 1)
-        mx_error_line(line);
+        error_line(line);
 }
 
-static void mx_line_parsing(r_list **list, char *s, int line) {
+static void line_parsing(r_list **list, char *s, int line) {
     char **l1;
     char **l2;
 
-    mx_delimeters(s, line);
+    delimeters(s, line);
     if (s[0] == '\0')
-        mx_error_line(line);
+        error_line(line);
     l1 = mx_strsplit(s, '-');
     if (mx_isalphabetic(l1[0]) == false || l1[1] == NULL)
-        mx_error_line(line);
+        error_line(line);
     l2 = mx_strsplit(l1[1], ',');
     if (mx_isalphabetic(l2[0]) == false || l2[1] == NULL
         || mx_atoi(l2[1]) == -1)
-        mx_error_line(line);
-    mx_push_edge(&(*list), l1[0], l2[0], mx_atoi(l2[1]));
-    mx_strdel(&l1[1]);
-    mx_strdel(&l2[1]);
+        error_line(line);
+    mx_push_edge(&(*list), mx_strdup(l1[0]),
+    mx_strdup(l2[0]), mx_atoi(l2[1]));
+    mx_del_strarr(&l1);
+    mx_del_strarr(&l2);
+}
+
+static void lastline_error(char *file, int line) {
+    char *f = mx_file_to_str(file);
+
+    if (f[mx_strlen(f) - 1] != '\n')
+        error_line(line);
+    mx_strdel(&f);
 }
 
 void mx_edges_list(r_list **list, char *file) {
@@ -54,9 +63,11 @@ void mx_edges_list(r_list **list, char *file) {
     s = mx_read_line('\n', fd);
     line++;
     while (s != NULL) {
-        mx_line_parsing(&(*list), s, line);
+        line_parsing(&(*list), s, line);
         mx_strdel(&s);
         s = mx_read_line('\n', fd);
         line++;
     }
+    close(fd);
+    lastline_error(file, line);
 }

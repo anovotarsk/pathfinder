@@ -6,16 +6,20 @@ int main(int argc, char *argv[]) {
 
     mx_validator(argc, argv);
     mx_edges_list(&edges, argv[1]);
-    r_list *e = edges;
-    while (e != NULL) {
-        printf("%s %s %d\n", e->point1, e->point2, e->len);//agehhaerperahi
-        e = e->next;
-    }
-    //printf("%d\n", mx_strcmp(edges->point2, edges->next->point1));
     points = mx_point_list(&edges, argv[1]);
-    while (points != NULL) {
-        printf("%s\n", points->point);
-        points = points->next;
+    int **matrix = NULL;
+    matrix = mx_adjacency_matrix(edges, points);
+    int count = 4;
+    for (int i = 0; i < count; i++) {
+        for (int j = 0; j < count; j++) {
+            if (matrix[i][j] != 0 && matrix[i][j] != 2147483647)
+                printf("%d  ", matrix[i][j]);
+            else
+                printf("0  ");
+        }
+        printf("\n");
     }
+    printf("\n\n\n");
+    mx_floyd(matrix, count);
     system("leaks -quiet a.out");
 }
