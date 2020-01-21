@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
     points = mx_point_list(&edges, argv[1]);
     int **matrix = NULL;
     matrix = mx_adjacency_matrix(edges, points);
-    int count = 4;
+    int count = 5;
     for (int i = 0; i < count; i++) {
         for (int j = 0; j < count; j++) {
             if (matrix[i][j] != 0 && matrix[i][j] != 2147483647)
@@ -20,6 +20,7 @@ int main(int argc, char *argv[]) {
         printf("\n");
     }
     printf("\n\n\n");
-    mx_floyd(matrix, count);
-    system("leaks -quiet a.out");
+    char ***m;
+    m = mx_floyd(matrix, count);
+    //system("leaks -quiet a.out");
 }

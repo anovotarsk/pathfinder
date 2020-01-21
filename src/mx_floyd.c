@@ -1,23 +1,38 @@
 #include "../inc/pathfinder.h"
 
-static int **copy_matrix(int **matrix, int count) {
-    int **new_m = (int**)malloc(8 * count);
+// static int **copy_matrix(int **matrix, int count) {
+//     int **new_m = (int**)malloc(8 * count);
+//     int i;
+//     int j;
+
+//     for (i = 0; i < count; i++)
+//         new_m[i] = (int*)malloc(4 * count);
+//     for (i = 0; i < count; i++) {
+//         for (j = 0; j < count; j++) {
+//             new_m[i][j] = matrix[i][j];
+//         }
+//     }
+//     return new_m;
+// }
+
+char ***mx_create_char_matrix(int count) {
+    char ***matrix = (char***)malloc(sizeof(char**) * count);
     int i;
     int j;
 
     for (i = 0; i < count; i++)
-        new_m[i] = (int*)malloc(4 * count);
-    for (i = 0; i < count; i++) {
+        matrix[i] = (char**)malloc(8 * count);
+    for (i = 0; i < count; i++)
         for (j = 0; j < count; j++) {
-            new_m[i][j] = matrix[i][j];
+            matrix[i][j] = mx_strnew(1);
+            matrix[i][j][0] = '0';
         }
-    }
-    return new_m;
+    return matrix;
 }
 
-void mx_floyd(int **adjacency, int count) {
-    int **shortest = copy_matrix(adjacency, count);
-    int **pathes = mx_create_int_matrix(count, 0);
+char ***mx_floyd(int **shortest, int count) {
+    char *tmp;
+    char ***pathes = mx_create_char_matrix(count);
     int i;
     int j;
     int k;
@@ -25,31 +40,42 @@ void mx_floyd(int **adjacency, int count) {
     for (k = 0; k < count; k++) {
         for (i = 0; i < count; i++) {
             for (j = 0; j < count; j++) {
-                if (shortest[i][k] + shortest[k][j] < shortest[i][j] 
-                    && shortest[i][k] + shortest[k][j] >= 0) {
+                if (shortest[i][k] + shortest[k][j] <= shortest[i][j] 
+                    && shortest[i][k] + shortest[k][j] >= 0
+                    && k != j && k!= i) {
+                    if (mx_strcmp(pathes[i][j], "0") == 0
+                        || shortest[i][k] + shortest[k][j] != shortest[i][j]) {
+                        mx_strdel(&pathes[i][j]);
+                        pathes[i][j] = mx_strnew(0);
+                    }
+                    else {
+                        tmp = mx_strdup(pathes[i][j]);
+                        mx_strdel(&pathes[i][j]);
+                        pathes[i][j] = mx_strcat(tmp, ",");
+                        mx_strdel(&tmp);
+                    }
+                    tmp = mx_strdup(pathes[i][j]);
+                    mx_strdel(&pathes[i][j]);
+                    pathes[i][j] = mx_strcat(tmp, mx_itoa(k + 1));
                     shortest[i][j] = shortest[i][k] + shortest[k][j];
-                    pathes[i][j] = k + 1;
+                    mx_strdel(&tmp);
                 }
             }
         }
     }
+    system("leaks -quiet a.out");
     for (int i = 0; i < count; i++) {
         for (int j = 0; j < count; j++) {
-            if (shortest[i][j] != 0 && shortest[i][j] != 2147483647)
-                printf("%d  ", shortest[i][j]);
-            else
-                printf("0  ");
+            printf("%d  ", shortest[i][j]);
         }
         printf("\n");
     }
     printf("\n\n\n");
     for (int i = 0; i < count; i++) {
         for (int j = 0; j < count; j++) {
-            if (pathes[i][j] != 0 && pathes[i][j] != 2147483647)
-                printf("%d  ", pathes[i][j]);
-            else
-                printf("0  ");
+            printf("%s  ", pathes[i][j]);
         }
         printf("\n");
     }
+    return pathes;
 }
