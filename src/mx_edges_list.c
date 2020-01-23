@@ -34,10 +34,10 @@ static void line_parsing(r_list **list, char *s, int line) {
     if (s[0] == '\0')
         error_line(line);
     l1 = mx_strsplit(s, '-');
-    if (mx_isalphabetic(l1[0]) == false || l1[1] == NULL)
+    if (l1[0] == NULL || mx_isalphabetic(l1[0]) == false || l1[1] == NULL)
         error_line(line);
     l2 = mx_strsplit(l1[1], ',');
-    if (mx_isalphabetic(l2[0]) == false || l2[1] == NULL
+    if (l2[0] == NULL || mx_isalphabetic(l2[0]) == false || l2[1] == NULL
         || mx_atoi(l2[1]) == -1)
         error_line(line);
     mx_push_edge(&(*list), mx_strdup(l1[0]),

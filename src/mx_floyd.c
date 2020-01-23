@@ -30,21 +30,17 @@ char ***mx_create_char_matrix(int count) {
     return matrix;
 }
 
-char ***mx_floyd(int **shortest, int count) {
+char ***mx_floyd(int **shortest, int count, char *t) {
     char *tmp;
     char ***pathes = mx_create_char_matrix(count);
-    int i;
-    int j;
-    int k;
 
-    for (k = 0; k < count; k++) {
-        for (i = 0; i < count; i++) {
-            for (j = 0; j < count; j++) {
+    for (int k = 0; k < count; k++) {
+        for (int i = 0; i < count; i++) {
+            for (int j = 0; j < count; j++) {
                 if (shortest[i][k] + shortest[k][j] <= shortest[i][j] 
                     && shortest[i][k] + shortest[k][j] >= 0
                     && k != j && k!= i) {
-                    if (mx_strcmp(pathes[i][j], "0") == 0
-                        || shortest[i][k] + shortest[k][j] != shortest[i][j]) {
+                    if (shortest[i][k] + shortest[k][j] != shortest[i][j]) {
                         mx_strdel(&pathes[i][j]);
                         pathes[i][j] = mx_strnew(0);
                     }
@@ -56,14 +52,15 @@ char ***mx_floyd(int **shortest, int count) {
                     }
                     tmp = mx_strdup(pathes[i][j]);
                     mx_strdel(&pathes[i][j]);
-                    pathes[i][j] = mx_strcat(tmp, mx_itoa(k + 1));
+                    t = mx_itoa(k);
+                    pathes[i][j] = mx_strcat(tmp, t);
+                    mx_strdel(&t);
                     shortest[i][j] = shortest[i][k] + shortest[k][j];
                     mx_strdel(&tmp);
                 }
             }
         }
     }
-    system("leaks -quiet a.out");
     for (int i = 0; i < count; i++) {
         for (int j = 0; j < count; j++) {
             printf("%d  ", shortest[i][j]);
