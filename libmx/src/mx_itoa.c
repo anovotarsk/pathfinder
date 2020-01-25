@@ -35,6 +35,11 @@ char *mx_itoa(int number) {
 
     if (number == -2147483648)
         return "-2147483648";
+    if (number == 0) {
+        pos = mx_strnew(1);
+        pos[0] = '0';
+        return pos;
+    }
     pos = converter((number < 0) ? number * -1 : number);
     if (number >= 0)
         return pos;

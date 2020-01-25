@@ -24,3 +24,27 @@ void mx_push_edge(r_list **list, char *point1, char *point2, int len) {
         l->next = node;
     }
 }
+
+t_path *mx_create_path(char *path, char *route) {
+    t_path *node = (t_path*)malloc(sizeof(t_path));
+
+    node->path = path;
+    node->route = route;
+    node->next = NULL;
+    return node;
+}
+
+void mx_push_path(t_path **list, char *path, char *route) {
+    t_path *l = NULL;
+    t_path *node = mx_create_path(path, route);
+
+    if (*list == NULL) {
+        *list = node;
+    }
+    else {
+        l = *list;
+        while (l->next != NULL)
+            l = l->next;
+        l->next = node;
+    }
+}

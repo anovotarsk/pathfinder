@@ -12,6 +12,11 @@ char **mx_strsplit(const char *s, char c) {
         return NULL;
     count = mx_count_words(s, c);
     arr = (char **) malloc((count+ 1) * sizeof(char *) );
+    if (count == 1) {
+        arr[0] = mx_strdup(s);
+        arr[1] = NULL;
+        return arr;
+    }
     arr = strsplit_dop(s, c, count, arr);
     arr[count] = NULL;
     return arr;

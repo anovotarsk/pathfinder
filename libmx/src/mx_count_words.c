@@ -6,7 +6,7 @@ static int check(const char *str, char c) {
 
     if (str == NULL)
         return -1;
-    len = mx_strlen(str) - 1;
+    len = mx_strlen(str);
     if (mx_get_char_index(str, c) == -1 && len > 0)
         return 1;
     for (i = 0; i < len; i++)

@@ -30,7 +30,8 @@ char ***mx_create_char_matrix(int count) {
     return matrix;
 }
 
-char ***mx_floyd(int **shortest, int count, char *t) {
+char ***mx_floyd(int **shortest, int count) {
+    char *t;
     char *tmp;
     char ***pathes = mx_create_char_matrix(count);
 
@@ -60,19 +61,6 @@ char ***mx_floyd(int **shortest, int count, char *t) {
                 }
             }
         }
-    }
-    for (int i = 0; i < count; i++) {
-        for (int j = 0; j < count; j++) {
-            printf("%d  ", shortest[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n\n\n");
-    for (int i = 0; i < count; i++) {
-        for (int j = 0; j < count; j++) {
-            printf("%s  ", pathes[i][j]);
-        }
-        printf("\n");
     }
     return pathes;
 }
