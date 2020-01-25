@@ -47,6 +47,8 @@ char *mx_arr_to_str(char **arr);
 char *mx_fix(char *str, int index);
 void mx_check_matrix(char ***matrix, int count);
 
+t_path ***mx_create_path_matrix(char ***pathes, int count);
+
 //error cases
 void mx_usage_error(int argc);
 void mx_exist_error(char *file);
@@ -64,9 +66,8 @@ void mx_print_route(char **arr);
 void mx_print_distance(char **arr);
 
 void mx_pathes(char ***pathes, int count, p_list *points);
-t_path *mx_create_path_list(char ***pathes, int i, int j);
 
-void mx_print_nodes(t_path *printed_node, p_list *list_of_islands, int **sizes);
+void mx_print_pathes(t_path *list, p_list *points, int **matrix);
 
 
 #endif
